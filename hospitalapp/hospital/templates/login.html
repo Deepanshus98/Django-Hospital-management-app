@@ -1,0 +1,36 @@
+{% extends "navigation.html" %}
+{% block content %}
+    {% ifequal error "yes" %}
+<script>
+  alert('logged in sucessfully')
+  window.location=('{% url 'home' %}');
+</script>
+
+{% endifequal %}
+
+{% ifequal error "no" %}
+<script>
+alert('Invalid login')
+
+
+
+</script>
+{% endifequal %}
+
+<div class="container" style="margin-top:50px">
+<h2 class="text-center">Admin-login</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <label>Admin name</label>
+  <input type="text" class="form-control" name="uname" >
+  <label>Password</label>
+  <input type="password" class="form-control" name="pwd" >
+  <br>
+  <input type="submit"  class="form-control btn btn-primary" value="login">
+
+</form>
+
+</div>
+<h1>ddd</h1>
+{% endblock %}

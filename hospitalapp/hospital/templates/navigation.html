@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <title>HOSPITAL MANAGEMENT SYSTEM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container">
+
+
+<a class="navbar-brand" href="#">Hospital Management System</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mymenu">
+  <span class="navbar-toggler-icon"></span>
+
+
+
+
+
+    </button>
+    <div class="collapse navbar-collapse" id="myMenu">
+      {% if not request.user.is_staff %}
+      <ul class="navbar-nav text-center ml-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a  class="nav-link" href="{% url 'about' %}">About</a></li>
+        <li class="nav-item"><a  class="nav-link" href="{% url 'contact' %}">contact</a></li>
+
+
+        {% if not request.user.is_staff %}
+        <li class="nav-item"><a  class="nav-link" href="{% url 'home' %}"> <i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item dropdown"> <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Doctor</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'add_doctor' %}">Add Doctor</a>
+        <a href="{% url 'view_doctor' %}" class="dropdown-item">View Doctor</a>
+
+        </div>
+        </li>
+        <li class="nav-item dropdown"> <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Patient</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'add_patient' %}">Add Patient</a>
+        <a href="{% url 'view_patient' %}" class="dropdown-item">View Patient</a>
+
+        </div>
+        </li>
+        <li class="nav-item dropdown"> <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Appiontment</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'add_appiontment' %}">Add appointment</a>
+        <a href="{% url 'view_appiontment' %}" class="dropdown-item">View Appointment</a>
+      </div>
+        </li>
+        <li class="nav-item"><a  class="nav-link" href="logout">Logout</a></li>
+        {% endif %}
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+
+
+  </nav>
+
+  {% block content %}
+
+  {% endblock %}
+
+
+
+</body>
+</html>
